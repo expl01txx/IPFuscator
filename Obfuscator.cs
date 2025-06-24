@@ -5,7 +5,6 @@ public class Obfuscator{
     
     public static string? ToNumber(string ipAddress)
     {
-        int _dwLevel = 0;
         byte[] _bytes = [0, 0, 0, 0];
 
         var chunks = ipAddress.Split(".");
@@ -23,7 +22,7 @@ public class Obfuscator{
         }
 
         //Convert to valid number
-        var obfuscated_bytes = (_bytes[0] * 16777216) + (_bytes[1] * 65536) + (_bytes[2] * 256) + _bytes[3] + (_dwLevel * 294967296);
+        var obfuscated_bytes = (_bytes[0] << 24) | (_bytes[1] << 16) | (_bytes[2] << 8) | _bytes[3];
         return obfuscated_bytes.ToString();
     } 
 
